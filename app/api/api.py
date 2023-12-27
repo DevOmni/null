@@ -55,7 +55,7 @@ def join_cell():
         return 403
     
     if not current_user.is_authenticated:
-        
+        pass
     resp = {
         'cell': cell.name,
         'message': 'cell joined Successfully',

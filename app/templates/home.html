@@ -226,7 +226,7 @@
                 <div class="actions-wrapper">
                     <div class="top-actions">
                         <div class="rjoin-sect flex">
-                            <form class="join-cell-form" id="join-cell-form" action="{{ url_for('app.api.join_cell') }}" method="post"></form>
+                            <form class="join-cell-form" id="join-cell-form" action="{{ url_for('api.join_cell') }}" method="post"></form>
                             <input type="text" name="cellCode" id="cellCode" placeholder="Cell Code">
                             <input type="password" name="cellPass" id="cellPass" placeholder="Cell Password">
                             <button id="joincellBtn" name="joincellBtn" onclick="joinCell();">Join</button>
@@ -238,7 +238,7 @@
                         </div>
                     </div>
                     <div id="create-cell-menu" class="create-cell-menu flex hidden">
-                        <form id="create-cell-form" class="create-cell-form" action="{{ url_for('app.api.create_cell') }}" method="post">
+                        <form id="create-cell-form" class="create-cell-form" action="{{ url_for('api.create_cell') }}" method="post">
                             <table>
                                 <!-- <tr>
                                     <th colspan="2">menu</th>
