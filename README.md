@@ -1,2 +1,2 @@
 # null
- platform for devs
+ "platform for devs, made by devs"
