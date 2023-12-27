@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#001100" />
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='fav.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <!-- <link rel="stylesheet" href="../static/css/style.css" /> -->
+
+    <title>Wise Dis-cuss</title>
+
+    <!-- <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script> -->
+    <script src="{{ url_for('static', filename='socketio-4-6-0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='jquery-3-7-1.min.js') }}"></script>
+    <style>.hidden {display: none;}</style>
+</head>
+<body>
+    <!-- Loading Start -->
+    <div class="loading-screen">
+        <div class="loading-animation">
+            <h3>#loading</h3>
+            <h4>$_______</h4>
+        </div>
+        <small class="ld-scr-tip">Tip: Deez Na...</small>
+        <script>
+            const getRandInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+
+            const charAni1 = ['$#____', '$_#____', '$__#___', '$___#__', '$____#_', '$_____#', '$______', '$______',]
+            const charAni2 = ['$0____', '$_0____', '$__0___', '$___0__', '$____0_', '$_____0', '$______', '$______',]
+            const charAniReady = ['$R_____|', '$_R_____|', '$__E____/', '$__E____/', '$___A___-', '$___A___-', '$____D__\\', '$____D__\\', '$_____Y_|', '$_____Y_|', '$_______/', '$_______/', '$_READY_-', '$_______-', '$_READY_\\', '$_______\\', ]
+            const loadingAnim = ['|', '/', '-', '\\', '|', '/', '-', '\\',];
+            const loadingScr = document.querySelector('.loading-screen');
+            const loadingScrAni = document.querySelector('.loading-animation');
+            let i = 0;
+            const countD = setInterval(() => {
+                // rubish = chars[getRandInt(0, chars.length-1)]
+                rubish = charAni2[i]
+                loadingScrAni.innerHTML = `
+                    <h3>#loading</h3>
+                    <h4>${rubish}_${loadingAnim[i]}</h4>
+                `;
+                i++;
+                if (i >= loadingAnim.length) i = 0;
+            }, 100);
+        </script>
+    </div>
+    
+    <!-- <input id="blurObj" style="position: absolute; bottom: -10000;" type="text"> -->
+    
+    <main class="main-container hidden" >
+        <aside class="side-panels left-side-panel cursor-pointer spanel-hover">
+
+            <section class="side-panel cursor-pointer spanel-hover">
+                <span class="side-panel-title .hr-d cursor-pointer flex">Cells</span>
+
+                <nav class="side-panel-categories">
+                    <span class="category active-category" data-for-tab="1">New</span>
+                    <span class="category" data-for-tab="2">Joined</span>
+                    <span class="category" data-for-tab="3">Top</span>
+                </nav>
+
+                <section class="category-content category-content-active" data-tab="1">
+                    <nav class="category-subcategories">
+                        <span class="subcategory active-category" data-for-tab="a">A</span>
+                        <span class="subcategory" data-for-tab="b">B</span>
+                    </nav>
+
+                    <section class="subcategory-content sp-content-padding subcategory-content-active" data-tab="a">
+                        this is content 1 A
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat dolorem unde eveniet, numquam harum, quam dolor in architecto voluptatibus impedit fugiat! Dignissimos tempore odit numquam quisquam quo nulla sequi illum libero. Iste eum modi ipsa sed voluptatum enim velit doloremque, temporibus, id repellat dolore sint ipsum numquam delectus rerum possimus doloribus distinctio quae debitis neque labore sequi hic alias impedit!
+                    </section>
+                    <section class="subcategory-content sp-content-padding" data-tab="b">
+                        this is content 1 B
+                    </section>
+                </section>
+
+                <section class="category-content" data-tab="2">
+                    <nav class="category-subcategories">
+                        <span class="subcategory" data-for-tab="a">A</span>
+                        <span class="subcategory" data-for-tab="b">B</span>
+                        <span class="subcategory" data-for-tab="c">C</span>
+                    </nav>
+
+                    <section class="subcategory-content sp-content-padding" data-tab="a">
+                        this is content 2 A
+                    </section>
+                    <section class="subcategory-content sp-content-padding" data-tab="b">
+                        this is content 2 B
+                    </section>
+                    <section class="subcategory-content sp-content-padding" data-tab="c">
+                        this is content 2 C
+                    </section>
+                </section>
+                
+                <section class="category-content" data-tab="3">
+                    <nav class="category-subcategories">
+                        <span class="subcategory" data-for-tab="a">A</span>
+                        <span class="subcategory" data-for-tab="b">B</span>
+                    </nav>
+
+                    <section class="subcategory-content sp-content-padding" data-tab="a">
+                        this is content 3 A
+                    </section>
+                    <section class="subcategory-content sp-content-padding" data-tab="b">
+                        this is content 3 B
+                    </section>
+                </section>
+            </section>
+
+            <section class="side-panel cursor-pointer spanel-hover">
+                <span class="side-panel-title .hr-d cursor-pointer">Cells</span>
+
+                <nav class="side-panel-categories">
+                    <span class="category active-category" data-for-tab="1">New</span>
+                    <span class="category" data-for-tab="2">Joined</span>
+                    <span class="category" data-for-tab="3">Top</span>
+                </nav>
+
+                <section class="category-content category-content-active" data-tab="1">
+                    <nav class="category-subcategories">
+                        <span class="subcategory active-category" data-for-tab="a">A</span>
+                        <span class="subcategory" data-for-tab="b">B</span>
+                    </nav>
+
+                    <section class="subcategory-content sp-content-padding subcategory-content-active" data-tab="a">
+                        this is content 1 A
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat dolorem unde eveniet, numquam harum, quam dolor in architecto voluptatibus impedit fugiat! Dignissimos tempore odit numquam quisquam quo nulla sequi illum libero. Iste eum modi ipsa sed voluptatum enim velit doloremque, temporibus, id repellat dolore sint ipsum numquam delectus rerum possimus doloribus distinctio quae debitis neque labore sequi hic alias impedit!
+                    </section>
+                    <section class="subcategory-content sp-content-padding" data-tab="b">
+                        this is content 1 B
+                    </section>
+                </section>
+
+                <section class="category-content" data-tab="2">
+                    <nav class="category-subcategories">
+                        <span class="subcategory" data-for-tab="a">A</span>
+                        <span class="subcategory" data-for-tab="b">B</span>
+                        <span class="subcategory" data-for-tab="c">C</span>
+                    </nav>
+
+                    <section class="subcategory-content sp-content-padding" data-tab="a">
+                        this is content 2 A
+                    </section>
+                    <section class="subcategory-content sp-content-padding" data-tab="b">
+                        this is content 2 B
+                    </section>
+                    <section class="subcategory-content sp-content-padding" data-tab="c">
+                        this is content 2 C
+                    </section>
+                </section>
+                
+                <section class="category-content sp-content-padding" data-tab="3">
+                    <ul class="subcategory-content" style="list-style: none;">
+                        <li><a href="#">ussr#4683</a></li>
+                        <li><a href="#">doomed#2704</a></li>
+                        <li><a href="#">yoyo#7629</a></li>
+                        <li><a href="#">habibi#9233</a></li>
+                        <li><a href="#">dank#6666</a></li>
+                    </ul>
+                </section>
+            </section>
+
+            <section class="side-panel cursor-pointer spanel-hover">
+                <span class="side-panel-title .hr-d cursor-pointer">Cells</span>
+
+                <nav class="side-panel-categories">
+                    <span class="category active-category" data-for-tab="1">New</span>
+                    <span class="category" data-for-tab="2">Joined</span>
+                    <span class="category" data-for-tab="3">Top</span>
+                </nav>
+
+                <section class="category-content category-content-active" data-tab="1">
+                    <nav class="category-subcategories">
+                        <span class="subcategory active-category" data-for-tab="a">A</span>
+                        <span class="subcategory" data-for-tab="b">B</span>
+                    </nav>
+
+                    <section class="subcategory-content sp-content-padding subcategory-content-active" data-tab="a">
+                        this is content 1 A
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat dolorem unde eveniet, numquam harum, quam dolor in architecto voluptatibus impedit fugiat! Dignissimos tempore odit numquam quisquam quo nulla sequi illum libero. Iste eum modi ipsa sed voluptatum enim velit doloremque, temporibus, id repellat dolore sint ipsum numquam delectus rerum possimus doloribus distinctio quae debitis neque labore sequi hic alias impedit!
+                    </section>
+                    <section class="subcategory-content sp-content-padding" data-tab="b">
+                        this is content 1 B
+                    </section>
+                </section>
+
+                <section class="category-content" data-tab="2">
+                    <nav class="category-subcategories">
+                        <span class="subcategory" data-for-tab="a">A</span>
+                        <span class="subcategory" data-for-tab="b">B</span>
+                        <span class="subcategory" data-for-tab="c">C</span>
+                    </nav>
+
+                    <section class="subcategory-content sp-content-padding" data-tab="a">
+                        this is content 2 A
+                    </section>
+                    <section class="subcategory-content sp-content-padding" data-tab="b">
+                        this is content 2 B
+                    </section>
+                    <section class="subcategory-content sp-content-padding" data-tab="c">
+                        this is content 2 C
+                    </section>
+                </section>
+                
+                <section class="category-content" data-tab="3">
+                    <nav class="category-subcategories">
+                        <span class="subcategory" data-for-tab="a">A</span>
+                        <span class="subcategory" data-for-tab="b">B</span>
+                    </nav>
+
+                    <section class="subcategory-content sp-content-padding" data-tab="a">
+                        this is content 3 A
+                    </section>
+                    <section class="subcategory-content sp-content-padding" data-tab="b">
+                        this is content 3 B
+                    </section>
+                </section>
+            </section>    
+
+        </aside>
+
+        <section class="hero-container">
+            <section id="actions" class="actions">
+                <div class="actions-wrapper">
+                    <div class="top-actions">
+                        <div class="rjoin-sect flex">
+                            <form class="join-cell-form" id="join-cell-form" action="{{ url_for('app.api.join_cell') }}" method="post"></form>
+                            <input type="text" name="cellCode" id="cellCode" placeholder="Cell Code">
+                            <input type="password" name="cellPass" id="cellPass" placeholder="Cell Password">
+                            <button id="joincellBtn" name="joincellBtn" onclick="joinCell();">Join</button>
+                        </div>
+                        <span>#-NULL</span>
+                        <div class="rcreate-sect flex">
+                            <button id="createCellBtn" name="createCellBtn" onclick="createCell(event);">Create Cell</button>
+                            <button id="createCellMenuToggler" class="flex flexcol center" onclick="toggleCreateCellMenu(event);">▲</button>
+                        </div>
+                    </div>
+                    <div id="create-cell-menu" class="create-cell-menu flex hidden">
+                        <form id="create-cell-form" class="create-cell-form" action="{{ url_for('app.api.create_cell') }}" method="post">
+                            <table>
+                                <!-- <tr>
+                                    <th colspan="2">menu</th>
+                                    <th>create cell</th>
+                                </tr> -->
+                                <tr>
+                                    <th class="{% if not current_user.is_authenticated %}restricted{% endif %}">Password: <input class="create-cell-menu-input" type="password" name="cellPassword" placeholder="password"></th>
+                                    <th>Max Users: <input class="create-cell-menu-input" type="range" name="cellUserLimit"></th>
+                                </tr>
+                                <tr>
+                                    <th class="{% if not current_user.is_authenticated %}restricted{% endif %}">Custom name: <input class="create-cell-menu-input" type="text" name="cellCustomName" placeholder="cell name"></th>
+                                    <th class="{% if not current_user.is_authenticated %}restricted{% endif %}">History: <input class="create-cell-menu-input" type="checkbox" name="cellHistoryState"></th>
+                                </tr>
+                                <tr>
+                                    <th {% if not current_user.is_authenticated %}class="restricted"{% endif %}>Permanent: <input class="create-cell-menu-input " type="checkbox" name="cellLifeState" {% if not current_user.is_authenticated %} alt="Login to use this feature" disabled{% endif %}></th>
+                                    <th class="{% if not current_user.is_authenticated %}restricted{% endif %}">Anonymous: <input class="create-cell-menu-input " type="checkbox" name="cellAnonimity"></th>
+                                </tr>
+                                <!-- <tfoot>
+                                    
+                                </tfoot> -->
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- <h2 class="cell-code">{{ cell_code }}</h2>
+            <hr /> -->
+
+            <section id="msg-terminal" class="msg-terminal">
+                <section class="messages">
+                    <div class="msg">
+                        <span class="user-nick">&lt; nick&gt;:</span>
+                        <p>Flask socketio is very interesting technology, like op!!!</p>
+                    </div>
+                    <div class="msg">
+                        <span class="user-nick">&lt;#omni&gt;:</span>
+                        <p>Hey yo, whats up</p>
+                    </div>
+                    <div class="msg">
+                        <span class="user-nick">&lt; potent&gt;:</span>
+                        <p>unfamiliar with the frameworks available and that I have always wanted to learn how to do </p>
+                    </div>
+                </section>
+                <section id="msgSender" class="msgSender">
+                    <input class="msg-input" id="msg" type="text" name="msg" placeholder="# Enter message">
+                    <button class="msg-send-btn" id="sendBtn" name="sendBtn" onclick="sendMsg();">&gt;</button>
+                </section>
+            </section>
+        </section>
+    </main>
+    
+
+    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
+    <!-- <script src="../static/main.js" defer></script> -->
+
+
+    <!-- Loading End -->
+    <script>
+        window.document.addEventListener('DOMContentLoaded', () => {
+        // setTimeout(() => {
+            $('.main-container').removeClass('hidden');
+            document.querySelector('.main-container').classList.remove('hidden');
+            clearInterval(countD);
+            i = 0;
+            const readyCountD = setInterval(() => {
+                // rubish = chars[getRandInt(0, chars.length-1)]
+                rubish = charAniReady[i];
+                loadingScrAni.innerHTML = `
+                    <h3>#loading</h3>
+                    <h4>${rubish}</h4>
+                `;
+                i++;
+                if (i >= charAniReady.length) i = 0;
+            }, 100); // play ready animation
+
+            setTimeout(() => {
+                clearInterval(readyCountD);
+                loadingScrAni.innerHTML = `
+                    <h3>#loading</h3>
+                    <h4>$_READY_!</h4>
+                `; // final freeze frame of loading screen
+                setTimeout(() => {
+                    loadingScr.remove();
+                }, 1000); // Remove loading screen 1sec after everything is done
+            }, 1600); // ready animation start
+            // }, 2400); // loading animation duration after DOM loaded
+        });
+    </script>    
+</body>
+</html>
